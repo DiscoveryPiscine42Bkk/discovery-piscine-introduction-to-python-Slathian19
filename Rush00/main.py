@@ -11,7 +11,15 @@ while True:
     print("4. สรุปจำนวนงานในแต่ละประเภท")
     print("5. ออกจากโปรแกรม")
 
-    Text = int(input("เลือกเมนู (1-5): "))
+    try:
+        Text = int(input("เลือกเมนู (1-5): "))
+    except ValueError:
+        print("กรุณาใส่ตัวเลขเท่านั้น")
+        continue
+
+    if Text not in [1, 2, 3, 4, 5]:
+        print("กรุณาเลือกเฉพาะเมนู 1-5 เท่านั้น")
+        continue
 
     
     if Text == 1:
@@ -21,8 +29,11 @@ while True:
         print("เพิ่มงานสำดร็จ")
     elif Text == 2:
         print("รายการงานทั้งหมด:")
-        for i in range(len(work)):
-            print(f"{i+1}. {date[i]} - {work[i]} ({work_type[i]})")
+        if len(work) == 0:
+            print("ยังไม่มีงานในรายการ")
+        else:
+            for i in range(len(work)):
+                print(f"{i+1}. {date[i]} - {work[i]} ({work_type[i]})")
     elif Text == 3:
         print("รายการงานทั้งหมด:")
         for i in range(len(work)):
